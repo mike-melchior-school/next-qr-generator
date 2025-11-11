@@ -23,7 +23,7 @@ export default function HomePage() {
         if (!qrData) return;
         const a = document.createElement("a");
         a.href = qrData;
-        a.download = `QR_CODE_${title}.jpg`;
+        a.download = `QR_CODE_${title}.png`;
         a.click();
     }
 
@@ -50,7 +50,7 @@ export default function HomePage() {
                         onClick={handleDownload}
                         className="mt-4 bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
                     >
-                        Download JPG
+                        Download PNG
                     </button>
                 </div>
             )}

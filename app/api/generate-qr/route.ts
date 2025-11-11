@@ -23,8 +23,7 @@ export async function GET(req: Request) {
 
     try {
         const title = await fetchYouTubeTitle(url);
-        // const qrDataUrl = await QRCode.toDataURL(url); // will default to png
-        const qrDataUrl = await QRCode.toDataURL(url, { type: "image/jpeg", rendererOpts: { quality: 0.9 } });
+        const qrDataUrl = await QRCode.toDataURL(url); // will default to png
 
         return Response.json({ title, qrDataUrl });
     } catch (err: any) {
