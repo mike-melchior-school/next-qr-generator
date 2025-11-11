@@ -8,14 +8,28 @@ function sanitizeTitle(title: string) {
     .replace(/^_+|_+$/g, "");
 }
 
-// Simple YouTube title fetcher (no ytdl-core)
+// async function fetchYouTubeTitle(url: string) {
+//   const res = await fetch(url);
+//   const html = await res.text();
+//   const match = html.match(/<title>(.*?)<\/title>/i);
+//   let title = match ? match[1].replace(" - YouTube", "").trim() : "Unknown_Video";
+//   return sanitizeTitle(title);
+// }
+
 async function fetchYouTubeTitle(url: string) {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+    },
+  });
+
   const html = await res.text();
   const match = html.match(/<title>(.*?)<\/title>/i);
   let title = match ? match[1].replace(" - YouTube", "").trim() : "Unknown_Video";
   return sanitizeTitle(title);
 }
+
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
