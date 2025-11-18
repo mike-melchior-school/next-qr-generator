@@ -43,6 +43,7 @@ export default function HomePage() {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 ref={inputRef}
+                onKeyDown={(e) => {if (e.key === "Enter") handleGenerate()}}
             />
 
             <button onClick={handleGenerate} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
